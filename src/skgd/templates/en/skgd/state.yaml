@@ -1,0 +1,77 @@
+# Spec Kit Game Dev - Project State
+# Automatically managed by workflow commands
+
+phase: uninitialized          # uninitialized|concept|design|architecture|production
+
+initialization:
+  completed: false
+  mcp_checked: false
+  claude_md_generated: false
+
+ci:                             # Optional CI/CD configuration
+  configured: false
+  engine: null                  # unity|godot (when configured)
+  date: null                    # ISO date when configured
+
+concept:
+  brainstorm_done: false
+  game_brief_done: false
+
+design:
+  gdd_started: false
+  gdd_sections_completed: []
+  specs_completed: []
+
+architecture:
+  technical_doc_done: false
+  unity_structure_created: false
+
+production:
+  current_cycle: 0
+  current_spec: null
+  current_step: null          # spec|plan|tasks|implement|playtest
+
+# Implementation tracking (per-feature, managed by /implement)
+implementation:
+  active: false               # Is an implementation session in progress?
+  feature: null               # Feature being implemented
+  total_tasks: 0
+  completed_tasks: 0
+  last_completed: null        # Task ID (e.g., "T015")
+  next_task: null             # Task ID (e.g., "T016")
+  session_scope: null         # "all" | "mvp" | "T001-T020" | "Phase 1-2"
+  sessions:                   # History of implementation sessions
+    count: 0
+    history: []               # [{date, range, completed, duration_min}]
+  last_checkpoint: null       # ISO timestamp of last save
+
+specs:
+  total: 0
+  completed: 0
+  in_progress: null
+  with_assets: []             # Specs that have asset requirements
+
+assets:
+  total_defined: 0
+  total_created: 0
+  by_category:
+    sprites: { defined: 0, created: 0 }
+    models: { defined: 0, created: 0 }
+    animations: { defined: 0, created: 0 }
+    audio: { defined: 0, created: 0 }
+  current_batch: null         # Feature currently being worked on
+  queue: []                   # Features with pending assets
+  active_mcps: []             # Currently connected asset MCPs
+
+snapshots:
+  count: 0
+  latest: null
+
+pivots:
+  count: 0
+  history: []
+
+last_action:
+  command: null
+  timestamp: null
+  result: null

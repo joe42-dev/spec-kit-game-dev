@@ -1,0 +1,72 @@
+# Spec Kit Game Dev - Project State
+# Automatically managed by workflow commands
+
+phase: uninitialized          # uninitialized|concept|design|architecture|production
+
+initialization:
+  completed: false
+  mcp_checked: false
+  claude_md_generated: false
+
+concept:
+  brainstorm_done: false
+  game_brief_done: false
+
+design:
+  gdd_started: false
+  gdd_sections_completed: []
+  specs_completed: []
+
+architecture:
+  technical_doc_done: false
+  unity_structure_created: false
+
+production:
+  current_cycle: 0
+  current_spec: null
+  current_step: null          # spec|plan|tasks|implement|playtest
+
+# Suivi d'implémentation (par feature, géré par /implement)
+implementation:
+  active: false               # Session d'implémentation en cours?
+  feature: null               # Feature en cours d'implémentation
+  total_tasks: 0
+  completed_tasks: 0
+  last_completed: null        # ID de tâche (ex: "T015")
+  next_task: null             # ID de tâche (ex: "T016")
+  session_scope: null         # "all" | "mvp" | "T001-T020" | "Phase 1-2"
+  sessions:                   # Historique des sessions d'implémentation
+    count: 0
+    history: []               # [{date, range, completed, duration_min}]
+  last_checkpoint: null       # Timestamp ISO du dernier checkpoint
+
+specs:
+  total: 0
+  completed: 0
+  in_progress: null
+  with_assets: []             # Specs ayant des besoins en assets
+
+assets:
+  total_defined: 0
+  total_created: 0
+  by_category:
+    sprites: { defined: 0, created: 0 }
+    models: { defined: 0, created: 0 }
+    animations: { defined: 0, created: 0 }
+    audio: { defined: 0, created: 0 }
+  current_batch: null         # Feature en cours de traitement
+  queue: []                   # Features avec assets en attente
+  active_mcps: []             # MCPs assets actuellement connectés
+
+snapshots:
+  count: 0
+  latest: null
+
+pivots:
+  count: 0
+  history: []
+
+last_action:
+  command: null
+  timestamp: null
+  result: null
