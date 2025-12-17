@@ -1,0 +1,161 @@
+# Internationalization Messages
+# Used by commands to display messages in user's language
+# Check .skgd/config.yaml → user.language (en/fr)
+
+en:
+  # Common
+  next_steps: "Next steps"
+  completed: "Completed"
+  created: "Created"
+  location: "Location"
+  summary: "Summary"
+  options: "Options"
+  recommended: "recommended"
+
+  # Brainstorm
+  brainstorm:
+    creation_mode: "No game brief found. Starting creative exploration..."
+    spark_mode: "Game brief exists. Entering spark mode for fresh perspectives..."
+    ignition: |
+      Let's start with what excites you:
+
+      "What's the feeling you want players to have that no game has quite nailed?"
+    crystallizing: "I think we've found something. Want me to capture this?"
+    complete: "Vision captured in docs/game-brief.md"
+
+  # Roadmap
+  roadmap:
+    title: "DEVELOPMENT ROADMAP"
+    concept: "CONCEPT"
+    design: "DESIGN"
+    production: "PRODUCTION"
+    next: "NEXT"
+    reason: "Reason"
+
+  # Spec
+  spec:
+    created: "Specification created"
+    requirements: "Requirements"
+    acceptance_criteria: "Acceptance criteria"
+
+  # Plan
+  plan:
+    created: "Implementation plan created"
+    phases: "Phases"
+    scripts: "Scripts to create"
+    complexity: "Complexity"
+
+  # Implement
+  implement:
+    complete: "Implementation complete"
+    unity_required: |
+      Unity connection required.
+
+      Please:
+      1. Open Unity Editor
+      2. Ensure Unity MCP bridge is running
+      3. Try /implement again
+    console_status: "Console status"
+
+  # Playtest
+  playtest:
+    passed: "PLAYTEST PASSED"
+    conditional: "CONDITIONAL PASS"
+    failed: "PLAYTEST FAILED"
+    all_criteria_met: "All acceptance criteria met"
+    needs_fixes: "Needs fixes"
+    blocking_issues: "Blocking issues"
+
+  # Continue
+  continue:
+    picking_up: "Picking up where we left off..."
+    resuming: "Resuming project..."
+    last_session: "Last session"
+    momentum: "Momentum"
+    next_logical: "Next logical step"
+
+  # Crystallize
+  crystallize:
+    complete: "Crystallization complete"
+    processed: "Processed"
+    observations: "observations"
+    patterns_extracted: "Validated patterns extracted"
+
+fr:
+  # Commun
+  next_steps: "Prochaines etapes"
+  completed: "Termine"
+  created: "Cree"
+  location: "Emplacement"
+  summary: "Resume"
+  options: "Options"
+  recommended: "recommande"
+
+  # Brainstorm
+  brainstorm:
+    creation_mode: "Pas de game brief trouve. Demarrage de l'exploration creative..."
+    spark_mode: "Game brief existant. Mode spark pour perspectives fraiches..."
+    ignition: |
+      Commencons par ce qui t'excite:
+
+      "Quelle sensation veux-tu que les joueurs ressentent, qu'aucun jeu n'a vraiment captee?"
+    crystallizing: "Je crois qu'on tient quelque chose. Je capture ca?"
+    complete: "Vision capturee dans docs/game-brief.md"
+
+  # Roadmap
+  roadmap:
+    title: "FEUILLE DE ROUTE"
+    concept: "CONCEPT"
+    design: "DESIGN"
+    production: "PRODUCTION"
+    next: "SUIVANT"
+    reason: "Raison"
+
+  # Spec
+  spec:
+    created: "Specification creee"
+    requirements: "Exigences"
+    acceptance_criteria: "Criteres d'acceptation"
+
+  # Plan
+  plan:
+    created: "Plan d'implementation cree"
+    phases: "Phases"
+    scripts: "Scripts a creer"
+    complexity: "Complexite"
+
+  # Implement
+  implement:
+    complete: "Implementation terminee"
+    unity_required: |
+      Connexion Unity requise.
+
+      Veuillez:
+      1. Ouvrir Unity Editor
+      2. Verifier que Unity MCP bridge fonctionne
+      3. Relancer /implement
+    console_status: "Etat de la console"
+
+  # Playtest
+  playtest:
+    passed: "PLAYTEST REUSSI"
+    conditional: "PASSE CONDITIONNEL"
+    failed: "PLAYTEST ECHOUE"
+    all_criteria_met: "Tous les criteres d'acceptation valides"
+    needs_fixes: "Corrections requises"
+    blocking_issues: "Problemes bloquants"
+
+  # Continue
+  continue:
+    picking_up: "Reprise ou on s'etait arrete..."
+    resuming: "Reprise du projet..."
+    last_session: "Derniere session"
+    momentum: "Momentum"
+    next_logical: "Prochaine etape logique"
+
+  # Crystallize
+  crystallize:
+    complete: "Cristallisation terminee"
+    processed: "Traite"
+    observations: "observations"
+    patterns_extracted: "Patterns valides extraits"
