@@ -1,0 +1,253 @@
+// SKGD File Dependencies Diagram
+// Render with: dot -Tpng files.dot -o files.png
+// Or online: https://dreampuf.github.io/GraphvizOnline/
+
+digraph SKGD_Files {
+    // Graph settings
+    rankdir=TB;
+    splines=true;
+    nodesep=0.6;
+    ranksep=0.8;
+    fontname="Arial";
+    compound=true;
+
+    // Node defaults
+    node [
+        shape=note,
+        style=filled,
+        fontname="Courier",
+        fontsize=10,
+        margin="0.2,0.1"
+    ];
+
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        color="#666666"
+    ];
+
+    // ============================================
+    // CONFIG & STATE FILES
+    // ============================================
+    subgraph cluster_skgd {
+        label=".skgd/";
+        labeljust="l";
+        style="rounded,filled";
+        color="#3498db";
+        fillcolor="#eaf2f8";
+        fontcolor="#2980b9";
+        fontname="Arial Bold";
+
+        config [
+            label="config.yaml\n─────────\nengine: unity|godot\nlanguage: en|fr\nprofile: pixel-2d",
+            fillcolor="#d5e8f7"
+        ];
+
+        state [
+            label="state.yaml\n─────────\nphase: concept|production\ncurrent_spec: [name]\nimplementation: {...}",
+            fillcolor="#d5e8f7"
+        ];
+
+        roadmap [
+            label="roadmap.yaml\n─────────\ncycles:\n  - features: [...]\n  - priority: critical",
+            fillcolor="#d5e8f7"
+        ];
+
+        // Memory subcluster
+        subgraph cluster_memory {
+            label=".skgd/memory/";
+            labeljust="l";
+            style="rounded,dashed";
+            color="#9b59b6";
+            fontcolor="#8e44ad";
+
+            constitution [
+                label="constitution.md\n─────────\nCore vision\nDesign principles",
+                fillcolor="#e8daef"
+            ];
+
+            learnings [
+                label="learnings.md\n─────────\nRaw observations\n[accumulates]",
+                fillcolor="#e8daef"
+            ];
+
+            learnings_core [
+                label="learnings-core.md\n─────────\nValidated patterns\nAnti-patterns",
+                fillcolor="#e8daef"
+            ];
+
+            session_context [
+                label="session-context.md\n─────────\nLast session state\nOpen threads",
+                fillcolor="#e8daef"
+            ];
+        }
+    }
+
+    // ============================================
+    // DOCS FILES
+    // ============================================
+    subgraph cluster_docs {
+        label="docs/";
+        labeljust="l";
+        style="rounded,filled";
+        color="#27ae60";
+        fillcolor="#eafaf1";
+        fontcolor="#229954";
+        fontname="Arial Bold";
+
+        game_brief [
+            label="game-brief.md\n─────────\nVision document\nConcept, USPs",
+            fillcolor="#d4edda"
+        ];
+
+        architecture_doc [
+            label="architecture.md\n─────────\nTech blueprint\nPatterns, stack",
+            fillcolor="#d4edda"
+        ];
+
+        gdd_doc [
+            label="gdd.md\n─────────\nFormal GDD\n[synthesized]",
+            fillcolor="#d4edda"
+        ];
+
+        // Pillars subcluster
+        subgraph cluster_pillars {
+            label="docs/pillars/";
+            labeljust="l";
+            style="rounded,dashed";
+            color="#16a085";
+            fontcolor="#16a085";
+
+            pillars_index [
+                label="_index.md\n─────────\nPillar list\nCompletion status",
+                fillcolor="#a9dfbf"
+            ];
+
+            pillar_game_loop [
+                label="game-loop.md\n─────────\nCore cycle\nFlow design",
+                fillcolor="#a9dfbf"
+            ];
+
+            pillar_other [
+                label="[type-specific].md\n─────────\nCombat, progression,\nlevel design, etc.",
+                fillcolor="#a9dfbf"
+            ];
+        }
+
+        // Specs subcluster
+        subgraph cluster_specs {
+            label="docs/specs/[feature]/";
+            labeljust="l";
+            style="rounded,dashed";
+            color="#e74c3c";
+            fontcolor="#c0392b";
+
+            spec_doc [
+                label="spec.md\n─────────\nRequirements\nAcceptance criteria",
+                fillcolor="#f8d7da"
+            ];
+
+            plan_doc [
+                label="plan.md\n─────────\nTechnical approach\nPhases",
+                fillcolor="#f8d7da"
+            ];
+
+            tasks_doc [
+                label="tasks.md\n─────────\nTask checklist\n[ ] T001, T002...",
+                fillcolor="#f8d7da"
+            ];
+
+            playtest_doc [
+                label="playtest.md\n─────────\nTest results\nVerdict",
+                fillcolor="#f8d7da"
+            ];
+        }
+    }
+
+    // ============================================
+    // DEPENDENCIES (Reads)
+    // ============================================
+
+    // /brainstorm
+    game_brief [style="filled,bold"];
+
+    // /pillars reads game-brief
+    game_brief -> pillars_index [label="/pillars"];
+    game_brief -> pillar_game_loop [style=dashed];
+
+    // /deep-dive reads pillars + brief
+    pillars_index -> pillar_game_loop [label="/deep-dive"];
+    game_brief -> pillar_game_loop [style=dotted];
+    constitution -> pillar_game_loop [style=dotted, label="principles"];
+
+    // /roadmap reads brief + pillars
+    game_brief -> roadmap [label="/roadmap"];
+    pillars_index -> roadmap [style=dashed];
+
+    // /architecture reads brief + roadmap
+    game_brief -> architecture_doc [label="/architecture"];
+    roadmap -> architecture_doc;
+    constitution -> architecture_doc [style=dotted];
+
+    // /gdd synthesizes all
+    game_brief -> gdd_doc [label="/gdd"];
+    pillars_index -> gdd_doc;
+    architecture_doc -> gdd_doc;
+    roadmap -> gdd_doc;
+
+    // /spec reads roadmap + constitution
+    roadmap -> spec_doc [label="/spec"];
+    constitution -> spec_doc [style=dotted];
+    learnings_core -> spec_doc [style=dotted, label="patterns"];
+
+    // /plan reads spec + architecture
+    spec_doc -> plan_doc [label="/plan"];
+    architecture_doc -> plan_doc [style=dashed];
+    learnings_core -> plan_doc [style=dotted];
+
+    // /tasks reads spec + plan
+    spec_doc -> tasks_doc [label="/tasks"];
+    plan_doc -> tasks_doc;
+    architecture_doc -> tasks_doc [style=dashed];
+
+    // /implement reads config + tasks + plan
+    config -> tasks_doc [style=dotted, label="engine"];
+    tasks_doc -> playtest_doc [label="/implement\n/playtest", style=bold];
+    plan_doc -> tasks_doc [style=dashed];
+    state -> tasks_doc [style=dotted, label="checkpoint"];
+
+    // /playtest writes to learnings
+    playtest_doc -> learnings [label="auto-extract", color="#9b59b6"];
+
+    // /crystallize
+    learnings -> learnings_core [label="/crystallize", color="#9b59b6", style=bold];
+
+    // /continue reads state + session
+    state -> session_context [style=dotted, label="/continue"];
+
+    // ============================================
+    // LEGEND
+    // ============================================
+    subgraph cluster_legend {
+        label="Legend";
+        labeljust="l";
+        style="rounded";
+        color="#95a5a6";
+        fontcolor="#7f8c8d";
+
+        node [shape=plaintext, fillcolor=white];
+
+        legend [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                <TR><TD BGCOLOR="#d5e8f7">  </TD><TD ALIGN="LEFT">Config/State</TD></TR>
+                <TR><TD BGCOLOR="#e8daef">  </TD><TD ALIGN="LEFT">Memory System</TD></TR>
+                <TR><TD BGCOLOR="#d4edda">  </TD><TD ALIGN="LEFT">Design Docs</TD></TR>
+                <TR><TD BGCOLOR="#a9dfbf">  </TD><TD ALIGN="LEFT">Pillars</TD></TR>
+                <TR><TD BGCOLOR="#f8d7da">  </TD><TD ALIGN="LEFT">Feature Specs</TD></TR>
+                <TR><TD>─→</TD><TD ALIGN="LEFT">Creates/Modifies</TD></TR>
+                <TR><TD>- -→</TD><TD ALIGN="LEFT">Reads (optional)</TD></TR>
+            </TABLE>
+        >];
+    }
+}

@@ -1,0 +1,318 @@
+// SKGD Living Memory System Diagram
+// Render with: dot -Tpng memory.dot -o memory.png
+// Or online: https://dreampuf.github.io/GraphvizOnline/
+
+digraph SKGD_Memory {
+    // Graph settings
+    rankdir=TB;
+    splines=polyline;
+    nodesep=0.5;
+    ranksep=0.6;
+    fontname="Arial";
+
+    // Node defaults
+    node [
+        shape=box,
+        style="rounded,filled",
+        fontname="Arial",
+        fontsize=11,
+        margin="0.3,0.2"
+    ];
+
+    // ============================================
+    // TITLE
+    // ============================================
+    title [
+        label="Living Memory System\n~5k Token Budget",
+        shape=plaintext,
+        fontname="Arial Bold",
+        fontsize=16,
+        fontcolor="#2c3e50"
+    ];
+
+    // ============================================
+    // LAYER 1: Constitution (Immutable Core)
+    // ============================================
+    subgraph cluster_layer1 {
+        label="Layer 1: Foundation (~500 tokens)";
+        labeljust="l";
+        style="rounded,filled";
+        color="#e74c3c";
+        fillcolor="#fdedec";
+        fontcolor="#c0392b";
+        fontname="Arial Bold";
+
+        constitution [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD ALIGN="LEFT"><B>constitution.md</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">────────────────</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Core vision (immutable)</TD></TR>
+                    <TR><TD ALIGN="LEFT">• 5 max design principles</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Technical constraints</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Target experience</TD></TR>
+                </TABLE>
+            >,
+            fillcolor="#f5b7b1"
+        ];
+
+        const_note [
+            label="NEVER changes\nafter /brainstorm",
+            shape=note,
+            fillcolor="#fdebd0",
+            fontsize=9
+        ];
+    }
+
+    // ============================================
+    // LAYER 2: Crystallized Learnings
+    // ============================================
+    subgraph cluster_layer2 {
+        label="Layer 2: Validated Patterns (~1000 tokens)";
+        labeljust="l";
+        style="rounded,filled";
+        color="#f39c12";
+        fillcolor="#fef9e7";
+        fontcolor="#d68910";
+        fontname="Arial Bold";
+
+        learnings_core [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD ALIGN="LEFT"><B>learnings-core.md</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">────────────────────</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Top 10 validated patterns</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Confirmed anti-patterns</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Key decisions + rationale</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Working values (timing, etc.)</TD></TR>
+                </TABLE>
+            >,
+            fillcolor="#f9e79f"
+        ];
+
+        core_note [
+            label="Updated via /crystallize\nwhen learnings.md grows",
+            shape=note,
+            fillcolor="#fdebd0",
+            fontsize=9
+        ];
+    }
+
+    // ============================================
+    // LAYER 3: Session Context
+    // ============================================
+    subgraph cluster_layer3 {
+        label="Layer 3: Session State (~500 tokens)";
+        labeljust="l";
+        style="rounded,filled";
+        color="#3498db";
+        fillcolor="#ebf5fb";
+        fontcolor="#2874a6";
+        fontname="Arial Bold";
+
+        session_context [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD ALIGN="LEFT"><B>session-context.md</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">────────────────────</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Last session state</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Open threads</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Key decisions made</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Momentum indicator</TD></TR>
+                </TABLE>
+            >,
+            fillcolor="#aed6f1"
+        ];
+
+        session_note [
+            label="Updated every session\nby /continue",
+            shape=note,
+            fillcolor="#d4e6f1",
+            fontsize=9
+        ];
+    }
+
+    // ============================================
+    // LAYER 4: Active Work
+    // ============================================
+    subgraph cluster_layer4 {
+        label="Layer 4: Active Work (~3000 tokens)";
+        labeljust="l";
+        style="rounded,filled";
+        color="#27ae60";
+        fillcolor="#eafaf1";
+        fontcolor="#1e8449";
+        fontname="Arial Bold";
+
+        active_work [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD ALIGN="LEFT"><B>Current Focus</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">───────────────</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Active spec.md</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Active plan.md</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Active tasks.md</TD></TR>
+                    <TR><TD ALIGN="LEFT">• OR active pillar (concept phase)</TD></TR>
+                </TABLE>
+            >,
+            fillcolor="#a9dfbf"
+        ];
+
+        active_note [
+            label="Only ONE feature\nloaded at a time",
+            shape=note,
+            fillcolor="#d5f5e3",
+            fontsize=9
+        ];
+    }
+
+    // ============================================
+    // LAYER 5: Archive (Not Loaded)
+    // ============================================
+    subgraph cluster_layer5 {
+        label="Layer 5: Archive (0 tokens loaded)";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#95a5a6";
+        fillcolor="#f8f9f9";
+        fontcolor="#7f8c8d";
+        fontname="Arial Bold";
+
+        archive [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD ALIGN="LEFT"><B>Not in Context</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">──────────────</TD></TR>
+                    <TR><TD ALIGN="LEFT">• learnings-archive/*.md</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Completed specs</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Old snapshots</TD></TR>
+                    <TR><TD ALIGN="LEFT">• Historical pillars</TD></TR>
+                </TABLE>
+            >,
+            fillcolor="#d5d8dc"
+        ];
+
+        archive_note [
+            label="Access via Scout\nsub-agent if needed",
+            shape=note,
+            fillcolor="#ebedef",
+            fontsize=9
+        ];
+    }
+
+    // ============================================
+    // TOKEN BUDGET VISUALIZATION
+    // ============================================
+    subgraph cluster_budget {
+        label="Token Budget";
+        labeljust="l";
+        style="rounded";
+        color="#9b59b6";
+        fontcolor="#8e44ad";
+
+        budget [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="8">
+                    <TR>
+                        <TD BGCOLOR="#f5b7b1" WIDTH="50">500</TD>
+                        <TD BGCOLOR="#f9e79f" WIDTH="100">1000</TD>
+                        <TD BGCOLOR="#aed6f1" WIDTH="50">500</TD>
+                        <TD BGCOLOR="#a9dfbf" WIDTH="300">3000</TD>
+                    </TR>
+                    <TR>
+                        <TD>L1</TD>
+                        <TD>L2</TD>
+                        <TD>L3</TD>
+                        <TD>L4 (Active)</TD>
+                    </TR>
+                </TABLE>
+            >,
+            shape=plaintext
+        ];
+
+        budget_total [
+            label="Total: ~5k tokens loaded\n→ 75k+ available for Smart Zone",
+            shape=plaintext,
+            fontname="Arial Bold",
+            fontsize=11
+        ];
+    }
+
+    // ============================================
+    // FLOW CONNECTIONS
+    // ============================================
+
+    title -> constitution [style=invis];
+
+    // Layer stack
+    constitution -> learnings_core [style=invis];
+    learnings_core -> session_context [style=invis];
+    session_context -> active_work [style=invis];
+    active_work -> archive [style=invis];
+
+    // Notes
+    constitution -> const_note [style=dotted, arrowhead=none];
+    learnings_core -> core_note [style=dotted, arrowhead=none];
+    session_context -> session_note [style=dotted, arrowhead=none];
+    active_work -> active_note [style=dotted, arrowhead=none];
+    archive -> archive_note [style=dotted, arrowhead=none];
+
+    // ============================================
+    // DATA FLOW
+    // ============================================
+    subgraph cluster_flow {
+        label="Data Flow";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#16a085";
+        fontcolor="#117a65";
+
+        learnings_raw [
+            label="learnings.md\n(raw, accumulates)",
+            fillcolor="#fdebd0",
+            shape=note
+        ];
+
+        crystallize_cmd [
+            label="/crystallize",
+            shape=diamond,
+            fillcolor="#e8daef"
+        ];
+
+        playtest_cmd [
+            label="/playtest",
+            shape=diamond,
+            fillcolor="#e8daef"
+        ];
+
+        // Flow
+        playtest_cmd -> learnings_raw [label="auto-extract"];
+        learnings_raw -> crystallize_cmd [label="when >50 lines"];
+        crystallize_cmd -> learnings_core [label="validated\npatterns", style=bold, color="#27ae60"];
+        crystallize_cmd -> archive [label="archive\nraw", style=dashed];
+    }
+
+    // ============================================
+    // LEGEND
+    // ============================================
+    subgraph cluster_legend {
+        label="Memory Layers";
+        labeljust="l";
+        style="rounded";
+        color="#7f8c8d";
+        fontcolor="#566573";
+
+        legend [
+            label=<
+                <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                    <TR><TD BGCOLOR="#f5b7b1" WIDTH="60">  </TD><TD ALIGN="LEFT">L1: Foundation (immutable)</TD></TR>
+                    <TR><TD BGCOLOR="#f9e79f">  </TD><TD ALIGN="LEFT">L2: Patterns (crystallized)</TD></TR>
+                    <TR><TD BGCOLOR="#aed6f1">  </TD><TD ALIGN="LEFT">L3: Session (ephemeral)</TD></TR>
+                    <TR><TD BGCOLOR="#a9dfbf">  </TD><TD ALIGN="LEFT">L4: Active (current work)</TD></TR>
+                    <TR><TD BGCOLOR="#d5d8dc">  </TD><TD ALIGN="LEFT">L5: Archive (not loaded)</TD></TR>
+                </TABLE>
+            >,
+            shape=plaintext
+        ];
+    }
+}

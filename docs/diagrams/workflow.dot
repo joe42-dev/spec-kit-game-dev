@@ -1,0 +1,282 @@
+// SKGD Workflow - Command Flow Diagram
+// Render with: dot -Tpng workflow.dot -o workflow.png
+// Or online: https://dreampuf.github.io/GraphvizOnline/
+
+digraph SKGD_Workflow {
+    // Graph settings
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=1.0;
+    fontname="Arial";
+
+    // Node defaults
+    node [
+        shape=box,
+        style="rounded,filled",
+        fontname="Arial",
+        fontsize=11,
+        margin="0.3,0.15"
+    ];
+
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=9
+    ];
+
+    // ============================================
+    // SETUP PHASE
+    // ============================================
+    subgraph cluster_setup {
+        label="SETUP";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#3498db";
+        fontcolor="#3498db";
+        fontsize=14;
+        fontname="Arial Bold";
+
+        init [
+            label="/init",
+            fillcolor="#d5e8f7",
+            tooltip="Initialize SKGD project"
+        ];
+    }
+
+    // ============================================
+    // CONCEPT PHASE
+    // ============================================
+    subgraph cluster_concept {
+        label="CONCEPT PHASE";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#27ae60";
+        fontcolor="#27ae60";
+        fontsize=14;
+        fontname="Arial Bold";
+
+        brainstorm [
+            label="/brainstorm\n(3 modes)",
+            fillcolor="#d4edda",
+            tooltip="Creative ideation: Explorer, Creator, or Spark mode"
+        ];
+
+        pillars [
+            label="/pillars",
+            fillcolor="#d4edda",
+            tooltip="Generate design pillar structure"
+        ];
+
+        deep_dive [
+            label="/deep-dive\n[pillar]",
+            fillcolor="#c3e6cb",
+            tooltip="Develop one pillar in depth"
+        ];
+
+        validate_design [
+            label="/validate-design",
+            fillcolor="#d4edda",
+            tooltip="Cross-pillar coherence check"
+        ];
+
+        gdd [
+            label="/gdd",
+            fillcolor="#d4edda",
+            tooltip="Generate Game Design Document"
+        ];
+
+        // Internal concept flow
+        brainstorm -> pillars;
+        pillars -> deep_dive;
+        deep_dive -> deep_dive [label="repeat\nper pillar", style=dashed, color="#666666"];
+        deep_dive -> validate_design;
+        validate_design -> gdd [style=dashed, label="optional"];
+    }
+
+    // ============================================
+    // PLANNING PHASE
+    // ============================================
+    subgraph cluster_planning {
+        label="PLANNING PHASE";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#f39c12";
+        fontcolor="#f39c12";
+        fontsize=14;
+        fontname="Arial Bold";
+
+        roadmap [
+            label="/roadmap",
+            fillcolor="#fef3cd",
+            tooltip="Feature prioritization"
+        ];
+
+        architecture [
+            label="/architecture",
+            fillcolor="#fef3cd",
+            tooltip="Technical architecture design"
+        ];
+
+        roadmap -> architecture;
+    }
+
+    // ============================================
+    // PRODUCTION CYCLE
+    // ============================================
+    subgraph cluster_production {
+        label="PRODUCTION CYCLE (repeat per feature)";
+        labeljust="l";
+        style="rounded,filled";
+        color="#e74c3c";
+        fontcolor="#e74c3c";
+        fillcolor="#fdf2f2";
+        fontsize=14;
+        fontname="Arial Bold";
+
+        spec [
+            label="/spec\n[feature]",
+            fillcolor="#f8d7da",
+            tooltip="Feature specification"
+        ];
+
+        plan [
+            label="/plan\n[feature]",
+            fillcolor="#f8d7da",
+            tooltip="Technical planning"
+        ];
+
+        tasks [
+            label="/tasks\n[feature]",
+            fillcolor="#f8d7da",
+            tooltip="Generate task checklist"
+        ];
+
+        implement [
+            label="/implement\n(multi-session)",
+            fillcolor="#f5c6cb",
+            tooltip="Execute via Unity/Godot MCP"
+        ];
+
+        playtest [
+            label="/playtest",
+            fillcolor="#f8d7da",
+            tooltip="Test & validate"
+        ];
+
+        // Production flow
+        spec -> plan -> tasks -> implement -> playtest;
+    }
+
+    // ============================================
+    // UTILITIES
+    // ============================================
+    subgraph cluster_utilities {
+        label="UTILITIES";
+        labeljust="l";
+        style="rounded,dashed";
+        color="#9b59b6";
+        fontcolor="#9b59b6";
+        fontsize=14;
+        fontname="Arial Bold";
+
+        node [shape=diamond, fillcolor="#e8daef"];
+
+        continue_cmd [
+            label="/continue",
+            tooltip="Smart session router"
+        ];
+
+        crystallize [
+            label="/crystallize",
+            tooltip="Compress learnings"
+        ];
+
+        snapshot [
+            label="/snapshot",
+            tooltip="Save milestone"
+        ];
+
+        pivot [
+            label="/pivot",
+            tooltip="Direction change"
+        ];
+
+        analyze [
+            label="/analyze",
+            tooltip="Cross-artifact validation"
+        ];
+
+        project_status [
+            label="/project-status",
+            tooltip="Dashboard"
+        ];
+
+        assets [
+            label="/assets",
+            tooltip="Asset pipeline"
+        ];
+    }
+
+    // ============================================
+    // PHASE CONNECTIONS
+    // ============================================
+
+    // Setup -> Concept
+    init -> brainstorm [lhead=cluster_concept];
+
+    // Concept -> Planning
+    validate_design -> roadmap [lhead=cluster_planning, label="design\ncomplete"];
+
+    // Planning -> Production
+    architecture -> spec [lhead=cluster_production];
+
+    // Production cycle repeat
+    playtest -> spec [
+        style=dashed,
+        color="#e74c3c",
+        label="next\nfeature",
+        constraint=false
+    ];
+
+    // ============================================
+    // UTILITY CONNECTIONS (dashed)
+    // ============================================
+
+    // Continue routing
+    continue_cmd -> brainstorm [style=dotted, color="#9b59b6", constraint=false];
+    continue_cmd -> spec [style=dotted, color="#9b59b6", constraint=false];
+    continue_cmd -> implement [style=dotted, color="#9b59b6", constraint=false];
+
+    // Crystallize from playtest
+    playtest -> crystallize [style=dashed, color="#9b59b6", label="if learnings\naccumulate"];
+
+    // Analyze before implement
+    tasks -> analyze [style=dotted, color="#9b59b6", label="optional", constraint=false];
+
+    // ============================================
+    // LEGEND
+    // ============================================
+    subgraph cluster_legend {
+        label="Legend";
+        labeljust="l";
+        style="rounded";
+        color="#95a5a6";
+        fontcolor="#95a5a6";
+        fontsize=12;
+
+        node [shape=plaintext, fillcolor=white];
+
+        legend [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4">
+                <TR><TD BGCOLOR="#d5e8f7" WIDTH="80">  </TD><TD ALIGN="LEFT">Setup</TD></TR>
+                <TR><TD BGCOLOR="#d4edda" WIDTH="80">  </TD><TD ALIGN="LEFT">Concept</TD></TR>
+                <TR><TD BGCOLOR="#fef3cd" WIDTH="80">  </TD><TD ALIGN="LEFT">Planning</TD></TR>
+                <TR><TD BGCOLOR="#f8d7da" WIDTH="80">  </TD><TD ALIGN="LEFT">Production</TD></TR>
+                <TR><TD BGCOLOR="#e8daef" WIDTH="80">◇</TD><TD ALIGN="LEFT">Utility</TD></TR>
+                <TR><TD>→</TD><TD ALIGN="LEFT">Main flow</TD></TR>
+                <TR><TD>⇢</TD><TD ALIGN="LEFT">Optional/repeat</TD></TR>
+            </TABLE>
+        >];
+    }
+}
