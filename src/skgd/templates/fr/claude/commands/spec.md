@@ -212,16 +212,25 @@ Si des assets ont été définis et des MCPs sont configurés, ajouter :
 💡 Astuce : Lancez /assets generate [nom-fonctionnalité] avant /implement pour préparer les assets.
 ```
 
-## IMPORTANT : S'ARRÊTER ICI
+## Auto-Suggest
 
-**Ne PAS procéder automatiquement à /plan ou toute autre commande.**
+Après l'affichage du résumé, montrer le prompt auto-suggest :
 
-Cette commande est terminée après l'affichage du résumé. Attendre que l'utilisateur :
-1. Révise la spécification
-2. Valide que les critères d'acceptation sont pertinents
-3. Demande explicitement `/plan` quand il est prêt
+```
+───────────────────────────────────────
+Suivant : Créer le plan d'implémentation
+[Entrée] /plan [feature] | [S] stop
+───────────────────────────────────────
+```
 
-L'utilisateur contrôle le rythme du workflow.
+- Si l'utilisateur appuie sur **Entrée** ou dit "oui"/"continuer" : Exécuter `/plan [nom-fonctionnalité]`
+- Si l'utilisateur dit **"stop"**, **"s"**, ou autre chose : Quitter et laisser l'utilisateur contrôler le rythme
+
+## IMPORTANT : Attendre la Réponse Utilisateur
+
+**Ne PAS procéder automatiquement** - afficher le prompt auto-suggest et attendre.
+
+Cela donne le contrôle à l'utilisateur tout en réduisant la friction pour le chemin commun.
 
 ## Modèle
 Utiliser : **sonnet** (tâche de documentation structurée)

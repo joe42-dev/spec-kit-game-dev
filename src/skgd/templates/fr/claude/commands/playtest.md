@@ -284,18 +284,39 @@ Tests Automatisés :
 Vérifications Manuelles : [N]/[N] passées
 
 Verdict : [RÉUSSI ✓ / ÉCHOUÉ ✗]
+```
 
-[Si RÉUSSI]
-Suivant : /continue pour passer à la prochaine fonctionnalité
-          /snapshot si c'est un jalon
+### Étape 11 : Auto-Suggest
 
-[Si ÉCHOUÉ]
+Après l'affichage du résumé, montrer le prompt approprié au contexte :
+
+**Si RÉUSSI :**
+```
+───────────────────────────────────────
+✓ Fonctionnalité complète ! Suivant : Sélectionner la prochaine fonctionnalité
+[Entrée] /continue | [S] stop | [M] snapshot jalon
+───────────────────────────────────────
+```
+
+- **Entrée** : Exécuter `/continue` pour sélectionner la prochaine fonctionnalité
+- **S** : Arrêter pour maintenant
+- **M** : Exécuter `/snapshot` pour sauvegarder le jalon
+
+**Si ÉCHOUÉ :**
+```
+───────────────────────────────────────
+✗ Problèmes trouvés. Corriger et retester.
+
 Problèmes à corriger :
 1. [Problème 1]
 2. [Problème 2]
 
-Suivant : Corriger les problèmes, puis /playtest à nouveau
+[Entrée] retester | [S] stop
+───────────────────────────────────────
 ```
+
+- **Entrée** : Exécuter `/playtest` à nouveau après corrections
+- **S** : Arrêter pour maintenant (problèmes tracés dans playtest.md)
 
 ## Modèle
 Utiliser : **sonnet** (tâche de test et validation)

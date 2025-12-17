@@ -361,10 +361,21 @@ Créé :
 
 Console : [statut]
 Tâches : [N]/[N] complétées
-
-Prochaine étape :
-  → /playtest - Valider l'implémentation
 ```
+
+### Auto-Suggest
+
+Après l'affichage du résumé, montrer le prompt auto-suggest :
+
+```
+───────────────────────────────────────
+Suivant : Valider l'implémentation
+[Entrée] /playtest | [S] stop
+───────────────────────────────────────
+```
+
+- Si l'utilisateur appuie sur **Entrée** ou dit "oui"/"continuer" : Exécuter `/playtest`
+- Si l'utilisateur dit **"stop"**, **"s"**, ou autre chose : Quitter et laisser l'utilisateur contrôler le rythme
 
 ---
 

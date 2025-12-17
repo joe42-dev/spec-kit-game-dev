@@ -214,20 +214,30 @@ Phases: [count]"
 ## Step 8: Summary
 
 ```
-Plan created: [feature-name]
+Plan créé : [feature-name]
 
-Location: docs/specs/[feature-name]/plan.md
+Emplacement : docs/specs/[feature-name]/plan.md
 
-Summary:
+Résumé :
 - [N] Phases
 - [N] Scripts
-- Complexity: [level]
-- Key pattern: [main pattern used]
-
-Next:
-  /tasks [feature] - Generate actionable task list
-  /continue - Auto-route
+- Complexité : [niveau]
+- Pattern principal : [pattern principal utilisé]
 ```
+
+## Step 9: Auto-Suggest
+
+Après l'affichage du résumé, montrer le prompt auto-suggest :
+
+```
+───────────────────────────────────────
+Suivant : Générer la liste de tâches actionnable
+[Entrée] /tasks [feature] | [S] stop
+───────────────────────────────────────
+```
+
+- Si l'utilisateur appuie sur **Entrée** ou dit "oui"/"continuer" : Exécuter `/tasks [feature-name]`
+- Si l'utilisateur dit **"stop"**, **"s"**, ou autre chose : Quitter et laisser l'utilisateur contrôler le rythme
 
 ## Remember
 

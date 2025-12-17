@@ -260,27 +260,37 @@ MVP scope: Phase 1-3"
 ## Step 8: Summary
 
 ```
-Tasks generated: [feature-name]
+Tâches générées : [feature-name]
 
-Location: docs/specs/[feature-name]/tasks.md
+Emplacement : docs/specs/[feature-name]/tasks.md
 
-Summary:
-- Total tasks: [N]
-- User stories: [N]
-- Parallel opportunities: [N]
-- MVP scope: [phases]
+Résumé :
+- Total tâches : [N]
+- User stories : [N]
+- Opportunités parallèles : [N]
+- Scope MVP : [phases]
 
-Task breakdown:
-- Setup: [N] tasks
-- Foundation: [N] tasks
-- [US1]: [N] tasks
-- [US2]: [N] tasks
-- Polish: [N] tasks
-
-Ready for implementation:
-  /implement - Execute tasks via Unity/Godot MCP
-  /continue - Auto-route
+Répartition des tâches :
+- Setup : [N] tâches
+- Foundation : [N] tâches
+- [US1] : [N] tâches
+- [US2] : [N] tâches
+- Polish : [N] tâches
 ```
+
+## Step 9: Auto-Suggest
+
+Après l'affichage du résumé, montrer le prompt auto-suggest :
+
+```
+───────────────────────────────────────
+Suivant : Démarrer l'implémentation via MCP
+[Entrée] /implement | [S] stop
+───────────────────────────────────────
+```
+
+- Si l'utilisateur appuie sur **Entrée** ou dit "oui"/"continuer" : Exécuter `/implement`
+- Si l'utilisateur dit **"stop"**, **"s"**, ou autre chose : Quitter et laisser l'utilisateur contrôler le rythme
 
 ## Task ID Reference
 

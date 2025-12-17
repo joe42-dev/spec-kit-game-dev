@@ -400,10 +400,21 @@ Created:
 
 Console: [status]
 Tasks: [N]/[N] completed
-
-Next:
-  /playtest - Validate implementation
 ```
+
+### Auto-Suggest
+
+After displaying the summary, show the auto-suggest prompt:
+
+```
+───────────────────────────────────────
+Next: Validate implementation
+[Enter] /playtest | [S] stop
+───────────────────────────────────────
+```
+
+- If user presses **Enter** or says "yes"/"continue": Execute `/playtest`
+- If user says **"stop"**, **"s"**, or anything else: Exit and let user control pace
 
 ---
 
