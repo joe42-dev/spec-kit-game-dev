@@ -106,14 +106,7 @@ That's it. You're building a game with AI.
 /brainstorm
 ```
 
-> **New in v3.4:** Commands now use Scout-First pattern for context gathering, reducing token usage by ~52%.
-
-> **New in v3.2:** `/brainstorm` now has 3 modes:
-> - **Explorer Mode** - Don't know what to make? Get guided with options and 5 concept proposals
-> - **Creator Mode** - Have a vision? Organic dialogue to capture it
-> - **Spark Mode** - Stuck? Get 3 creative sparks to unblock
-
-Opus will have a creative dialogue with you:
+Opus will have a creative dialogue with you (3 modes: Explorer, Creator, Spark):
 - What excites you about this game?
 - What feeling should players have?
 - What's the ONE thing that makes it different?
@@ -142,7 +135,7 @@ Opus designs project-wide technical decisions:
 
 ---
 
-### Session 1.5: Design Pillars (NEW in v3.2)
+### Session 1.5: Design Pillars
 
 **Goal:** Deep-dive into your game's design decisions with quality focus.
 
@@ -159,8 +152,6 @@ Generates design pillar stubs based on your game type (roguelike, platformer, RP
 ```
 /deep-dive game-loop
 ```
-
-> **New in v3.4:** Uses Scout-First pattern - a Haiku sub-agent gathers context first, keeping Opus focused on creative dialogue.
 
 Develops ONE pillar in depth through collaborative dialogue:
 - Answer key design questions
@@ -204,8 +195,6 @@ Each feature follows the same cycle:
 │                                                       │
 └───────────────────────────────────────────────────────┘
 ```
-
-> **New in v3.1:** `/tasks` is now separate from `/plan` for better quality task lists with IDs, parallelization markers, and user story organization.
 
 #### Example: Building Player Movement
 
@@ -262,7 +251,7 @@ Opus runs tests and guides manual validation:
 - Automated Unity tests
 - Acceptance criteria checklist
 - Game feel assessment
-- **Auto-captures learnings** to `.skgd/memory/learnings.md` (NEW in v3.4)
+- Auto-captures learnings to `.skgd/memory/learnings.md`
 
 ```bash
 # Move to next feature
@@ -704,69 +693,10 @@ Built for solo developers who want to build games faster with AI.
 
 ## Upgrading Existing Projects
 
-### From v3.5 to v3.6
-
 ```bash
 cd your-existing-project
 pip install --upgrade git+https://github.com/joe42-dev/spec-kit-game-dev.git
 skgd upgrade
 ```
 
-**v3.6 adds:**
-- **`/next` command** - Zero-friction continue (executes next action immediately, no questions)
-- **`/ci` command** - Optional GitHub Actions CI/CD setup for automated testing
-- **Auto-Suggest system** - Post-command suggestions for `/spec`, `/plan`, `/tasks`, `/playtest`
-- **Quality Gates in `/implement`** - Validation checkpoint every 5 tasks with console error checking
-
-### From v3.4 to v3.5
-
-```bash
-cd your-existing-project
-pip install --upgrade git+https://github.com/joe42-dev/spec-kit-game-dev.git
-skgd upgrade
-```
-
-**v3.5 adds:**
-- **Unified `/implement`** - Single command auto-detects Unity/Godot from config (removes `/implement-unity` and `/implement-godot`)
-- **`/gdd` command** - Generate formal Game Design Document synthesizing all design work
-- **DOT diagrams** - Visual workflow, file dependencies, and memory system diagrams
-- **Comprehensive tutorial** - 8-part walkthrough in `docs/tutorial/`
-
-### From v3.3 to v3.4
-
-```bash
-cd your-existing-project
-pip install --upgrade git+https://github.com/joe42-dev/spec-kit-game-dev.git
-skgd upgrade
-```
-
-**v3.4 adds:**
-- **Scout-First pattern** - Haiku sub-agent gathers context before creative commands, reducing token usage by ~52%
-- **Auto-learnings in `/playtest`** - Observations automatically saved to `learnings.md` with proper categorization
-- **Crystallization triggers** - System suggests `/crystallize` when learnings exceed 30 entries
-- Improved `/deep-dive` with Phase 0 context scouting
-
-### From v3.0 to v3.1
-
-```bash
-cd your-existing-project
-pip install --upgrade git+https://github.com/joe42-dev/spec-kit-game-dev.git
-skgd upgrade
-```
-
-**v3.1 adds:**
-- `/architecture` command (project-wide technical design)
-- `/tasks` command (separated from `/plan` for better quality)
-- Rich task format: IDs (T001), [P] markers, [US1] story labels
-
-### From v1.x or v2.x
-
-```bash
-cd your-existing-project
-skgd upgrade
-```
-
-This will:
-- Preserve your game-brief, specs, and learnings
-- Add all new features (Living Memory, Skills, architecture, tasks)
-- Update commands to latest version
+This preserves your game-brief, specs, and learnings while updating commands to the latest version.
